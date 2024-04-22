@@ -1,0 +1,18 @@
+package com.example.examletest.util;
+
+import com.example.examletest.aop.LoggingDao;
+import jakarta.annotation.PostConstruct;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public class Calculator {
+
+    LoggingDao loggingDao;
+
+    public int sum(int a, int b) {
+        loggingDao.logBefore();
+        return a + b;
+    }
+
+}
