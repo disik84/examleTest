@@ -5,24 +5,23 @@ import com.example.examletest.Dao.CalculatorDaoImp;
 import com.example.examletest.model.User;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
-import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.mockito.Spy;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.util.Iterator;
 
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.*;
 
+@ExtendWith(MockitoExtension.class)
 public class LoggingDaoTest {
 
-    @Mock
+    @Spy
     CalculatorDao calculatorDao;
 
-    @Mock
+    @Spy
     LoggingDao loggingDao;
 
     @InjectMocks
@@ -34,15 +33,17 @@ public class LoggingDaoTest {
     }
 
     @Test
-    void logBeforeAddUser() {
-        LoggingDao loggingDao1 = mock(LoggingDao.class);
-        Class<LoggingDao> clazz = (Class<LoggingDao>) loggingDao1.getClass();
-        System.out.println(clazz);
+    void logBeforeAddUser() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException
+            , InstantiationException {
+
         User user = new User();
-        user.setName("Test");
-        user.setLastName("Test");
+        user.setName("test");
+        user.setLastName("test");
+
         calculatorDaoImp.addUser(user);
+
         verify(loggingDao).logBefore();
+
     }
 
 }

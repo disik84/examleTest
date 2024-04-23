@@ -4,18 +4,19 @@ import com.example.examletest.aop.LoggingDao;
 import com.example.examletest.model.User;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 @Repository
+@Component
 public class CalculatorDaoImp {
 
+    @Autowired
     private CalculatorDao calculatorDao;
-
-    private LoggingDao loggingDao;
 
     public CalculatorDaoImp(CalculatorDao calculatorDao, LoggingDao loggingDao) {
         this.calculatorDao = calculatorDao;
-        this.loggingDao = loggingDao;
     }
 
     @Transactional

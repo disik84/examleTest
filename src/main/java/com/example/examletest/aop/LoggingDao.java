@@ -10,12 +10,16 @@ import org.springframework.stereotype.Component;
 @Aspect
 public class LoggingDao {
 
+    public boolean runOrNotRun = false;
+
     @Pointcut("execution(* com.example.examletest.Dao.*.*(..))")
     public void callTest() {}
 
     @Before("callTest()")
     public void logBefore() {
         System.out.println("Starting logBefore");
+        runOrNotRun = true;
+        System.out.println("runOrNotRun = " + runOrNotRun);
     }
 
     @After("callTest()")

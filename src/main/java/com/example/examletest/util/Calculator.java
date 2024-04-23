@@ -8,10 +8,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class Calculator {
 
-    LoggingDao loggingDao;
 
     public int sum(int a, int b) {
-        loggingDao.logBefore();
         return a + b;
     }
 
